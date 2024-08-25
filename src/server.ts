@@ -1,11 +1,11 @@
 // server.ts
 import express, { Application } from "express";
 import cors from "cors";
-import connectDB from "./src/config/db";
+import connectDB from "./config/db";
 
-import voteRoutes from "./src/routes/voteRoutes";
-import votesByLocation from "./src/routes/getVotesByLocation";
-import mostVotedCandidatesRoutes from "./src/routes/getMostVotedCandidateRoutes";
+import voteRoutes from "./routes/voteRoutes";
+import votesByLocation from "./routes/getVotesByLocation";
+import mostVotedCandidatesRoutes from "./routes/getMostVotedCandidateRoutes";
 const app: Application = express();
 
 app.use(cors());
