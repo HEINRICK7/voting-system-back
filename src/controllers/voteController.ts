@@ -6,16 +6,29 @@ export const createVote = async (
   res: Response
 ): Promise<void> => {
   const { candidatoPrefeito, candidatoVereador, local } = req.body;
+  const userIp = req.ip;
+  const userAgent = req.get("User-Agent") || "unknown";
 
   if (!candidatoPrefeito || !candidatoVereador || !local) {
     res.status(400).json({ message: "Todos os campos são obrigatórios." });
     return;
   }
 
+  // Verifica se já existe um voto com o mesmo IP e User-Agent
+  const existingVote = await Vote.findOne({ userIp, userAgent });
+
+  if (existingVote) {
+    res
+      .status(403)
+      .json({ message: "Você já votou a partir deste dispositivo." });
+    return;
+  }
   const vote = new Vote({
     candidatoPrefeito,
     candidatoVereador,
     pollingLocation: local,
+    userIp,
+    userAgent,
   });
 
   try {

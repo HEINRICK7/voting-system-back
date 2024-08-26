@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
 interface IVote extends Document {
   candidatoPrefeito: {
@@ -10,7 +10,8 @@ interface IVote extends Document {
     numero: string;
   };
   pollingLocation: string;
-  timestamp: Date;
+  userIp: string;
+  userAgent: string;
 }
 
 const VoteSchema: Schema = new Schema({
@@ -23,7 +24,8 @@ const VoteSchema: Schema = new Schema({
     numero: { type: String, required: true },
   },
   pollingLocation: { type: String, required: true },
-  timestamp: { type: Date, default: Date.now },
+  userIp: { type: String, required: true }, // Adicionado campo para armazenar o IP
+  userAgent: { type: String, required: true }, // Adicionado campo para armazenar o User-Agent
 });
 
-export default mongoose.model<IVote>('Vote', VoteSchema);
+export default mongoose.model<IVote>("Vote", VoteSchema);

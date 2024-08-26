@@ -34,6 +34,7 @@ const VoteSchema = new mongoose_1.Schema({
         numero: { type: String, required: true },
     },
     pollingLocation: { type: String, required: true },
-    timestamp: { type: Date, default: Date.now },
+    userIp: { type: String, required: true }, // Adicionado campo para armazenar o IP
+    userAgent: { type: String, required: true }, // Adicionado campo para armazenar o User-Agent
 });
-exports.default = mongoose_1.default.model('Vote', VoteSchema);
+exports.default = mongoose_1.default.model("Vote", VoteSchema);
