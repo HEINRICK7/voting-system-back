@@ -11,7 +11,7 @@ const app = express();
 const corsOptions = {
   origin: [
     "http://localhost:3000",
-    "https://voting-system-chi-nine.vercel.app",
+    "https://voting-system-sooty.vercel.app",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
